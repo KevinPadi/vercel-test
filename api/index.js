@@ -1,6 +1,18 @@
 import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config(); // Cargar las variables de entorno
 
 const app = express();
+
+// Usar la URI de conexión desde las variables de entorno
+const mongoURI = process.env.MONGODB_URI;
+
+// Conectar a MongoDB
+mongoose.connect(mongoURI,)
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
 app.get("/", (req, res) => {
   res.send(`
